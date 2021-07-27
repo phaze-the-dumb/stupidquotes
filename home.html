@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>Nonsense Quotes</title>
+
+        <style>
+            body{
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: url('https://www.getsims.com/wp-content/uploads/2020/12/gradient-background-02.jpg');
+            }
+
+            #container{
+                margin: 5%;
+                background: #111B;
+                height: 80%;
+                border-radius: 10px;
+                box-shadow: 5px 5px 5px #000;
+            }
+
+            button{
+                padding: 5px 15px;
+                background: black;
+                color: white;
+                border: white solid 2px;
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <center>
+                <h1 style="color: white;">Nonsense Quotes</h1>
+                <p style="color: white;" id="quote"></p>
+                <button onclick="quote()">New Quotes</button>
+
+                <h3 style="color: white;" onclick="window.location = 'https://phaze.gq'">Phaze#6193</h3>
+
+                <p style="color: white;">API: /api/v1/quote (if your looking for a proper quote api "//api.wiresdev.ga/api/v2/random/quote")</p>
+            </center>
+        </div>
+
+        <script>
+            function quote(){
+                let text = ''
+
+                for(let i = 0; i < 10; i++){
+                    fetch('./api/v1/quote').then(data => data.text()).then(data => {
+                        text = text + data + '<br><br>'
+                        document.getElementById('quote').innerHTML = text
+                    })
+                }
+            }
+
+            quote()
+        </script>
+    </body>
+</html>
